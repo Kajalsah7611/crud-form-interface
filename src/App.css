@@ -2,21 +2,50 @@
   text-align: center;
   margin: 20px;
 }
-
+/* EntryForm.css */
 form {
   display: flex;
   flex-direction: column;
   width: 300px;
   margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 
 label {
   margin-top: 10px;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:hover,
+input:focus {
+  border-color: #4caf50; /* Change border color on hover and focus */
 }
 
 button {
+  padding: 10px;
   margin-top: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
+
+button:hover {
+  background-color: #69b46c; /* Change background color on hover */
+}
+
 
 .grid {
   display: flex;
@@ -28,4 +57,10 @@ button {
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.entry:hover {
+  transform: scale(1.05); /* Enlarge the entry on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow for depth */
 }
