@@ -15,6 +15,7 @@ function App() {
   });
 
   const [entries, setEntries] = useState([]);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,19 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if any input field is empty
+    if (
+      formData.name.trim() === '' ||
+      formData.address.trim() === '' ||
+      formData.mobileNumber.trim() === '' ||
+      formData.email.trim() === '' ||
+      formData.message.trim() === ''
+    ) {
+      setError('All fields are required');
+      return;
+    }
+
     setEntries((prevEntries) => [...prevEntries, formData]);
     setFormData({
       name: '',
@@ -34,11 +48,13 @@ function App() {
       email: '',
       message: '',
     });
+    setError(''); // Clear the error state
   };
 
   return (
     <div className="App">
       <h1>CRUD Interface</h1>
+     <h3 style={{color:'red'}}> {error && <p className="error">{error}</p>}</h3>
       <EntryForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
       <EntryGrid entries={entries} />
     </div>
