@@ -56,7 +56,7 @@ function App() {
       <h1>CRUD Interface</h1>
      <h3 style={{color:'red'}}> {error && <p className="error">{error}</p>}</h3>
       <EntryForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-      <EntryGrid entries={entries} />
+      <EntryGrid entries={entries} setEntries={setEntries} />
     </div>
   );
 }
