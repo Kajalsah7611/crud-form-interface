@@ -1,5 +1,7 @@
 // App.js
 import React, { useState } from 'react';
+// import { v4 as uuidv4 } from 'uuid';
+
 import './App.css';
 import EntryForm from './components/EntryForm';
 import EntryGrid from './components/EntryGrid';
@@ -25,6 +27,16 @@ function App() {
     }));
   };
 
+ 
+const deleteTask = (id) => {
+  // Filter out the entry with the given ID
+  const updatedEntries = entries.filter((entry, index) => index!== id);
+  // Update the entries state with the filtered entries
+  setEntries(updatedEntries);
+};
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,7 +52,8 @@ function App() {
       return;
     }
 
-    setEntries((prevEntries) => [...prevEntries, formData]);
+    // setEntries((prevEntries) => [...prevEntries, { ...formData, id: uuidv4() }]); // to generate unique ids for each entry
+    setEntries((prevEntries) => [...prevEntries, { ...formData, id: prevEntries.length }]);
     setFormData({
       name: '',
       address: '',
@@ -56,7 +69,7 @@ function App() {
       <h1>CRUD Interface</h1>
      <h3 style={{color:'red'}}> {error && <p className="error">{error}</p>}</h3>
       <EntryForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-      <EntryGrid entries={entries} setEntries={setEntries} />
+      <EntryGrid entries={entries} onDelete={deleteTask} />
     </div>
   );
 }
